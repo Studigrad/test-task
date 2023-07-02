@@ -5,6 +5,7 @@ export const COMPLETE_TASK = 'COMPLETE_TASK';
 export const BY_TITLE = 'BY_TITLE';
 export const BY_DATE = 'BY_DATE';
 export const BY_DESC = 'BY_DESC';
+export const UNDO_TASK = 'UNDO_TASK'
 
 export const addTask = (task) => ({
   type: ADD_TASK,
@@ -19,6 +20,11 @@ export const byTitle = (tasks) => ({
 export const byDate = (tasks) => ({
   type: BY_DATE,
   payload: tasks,
+});
+
+export const unDoTask = (taskId) => ({
+  type: UNDO_TASK,
+  payload: taskId,
 });
 
 export const byDesc = (tasks) => ({

@@ -1,0 +1,6 @@
+.completedTodo {
+    padding: 10px !important;
+}
+.listItem {
+    text-decoration: line-through !important;
+}

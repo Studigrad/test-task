@@ -5,11 +5,12 @@ import {
     COMPLETE_TASK,
     BY_TITLE,
     BY_DATE,
-    BY_DESC
+    BY_DESC,
+    UNDO_TASK
   } from '../actions/taskActions';
   
   const initialState = {
-    tasks: [{ id: 1,title:'Title', description: "Walk The Goldfish", completed: false ,dueDate:'2022-02-05' }],
+    tasks: [{ id: 1,title:'Title', description: "Walk The Goldfish", completed: false ,dueDate:'Thu, 13 Jul 2023' }],
     completedTasks: [],
   };
   
@@ -75,6 +76,15 @@ import {
           tasks: state.tasks.filter((task) => task.id !== action.payload),
           completedTasks: [...state.completedTasks, completedTask],
         };
+        case UNDO_TASK:
+          const undoTask = state.completedTasks.find(
+            (task) => task.id === action.payload
+          );
+          return {
+            ...state,
+            tasks: [...state.tasks, undoTask],
+            completedTasks:  state.completedTasks.filter((task) => task.id !== action.payload),
+          };
       default:
         return state;
     }

@@ -1,0 +1,11 @@
+.paper {
+                padding: 0;
+                margin: 0;
+                height: 100vh;
+                background-color: #fafafa;
+                text-align: center
+}
+.link-create{
+    text-decoration:none;
+    color:white ;
+}

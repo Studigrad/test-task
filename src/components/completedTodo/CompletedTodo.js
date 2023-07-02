@@ -1,19 +1,20 @@
 import React from "react";
-import useToggleState from "./hooks/useToggleState";
-import EditTodoForm from "./EditTodoForm";
+import useToggleState from "../../hooks/useToggleState";
+import EditTodoForm from "../editTodoForm/EditTodoForm";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItem";
 import Checkbox from "@material-ui/core/Checkbox";
 import IconButton from "@material-ui/core/IconButton";
 import DeleteIcon from "@material-ui/icons/Delete";
-import EditIcon from "@material-ui/icons/Edit";
+import List from '@mui/material/List';
 import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
 import { useDispatch } from 'react-redux';
-function Todo({ id,title,dueDate, description, completed, removeTodo, toggleTodo, editTodo }) {
+import "./CompletedTodo.css"
+function CompletedTodo({ id,title,dueDate, description, completed, removeTodo, toggleTodo, editTodo }) {
   const [isEditing, toggle] = useToggleState(false);
   const dispatch = useDispatch();
   return (
-    <ListItem style={{ height: "120px" }}>
+    <ListItem className="completedTodo">
       {isEditing ? (
         <EditTodoForm
           editTodo={editTodo}
@@ -25,28 +26,37 @@ function Todo({ id,title,dueDate, description, completed, removeTodo, toggleTodo
         />
       ) : (
         <>
-          <Checkbox
+         <Checkbox
             tabIndex={-1}
-            checked={false}
+            checked={true}
             onClick={() => dispatch(toggleTodo(id))}
           />
-          <ListItemText
-            style={{ textDecoration: "none"}}
-          >
-            {title} / {description} / Due Date: {dueDate}
+        <List >
+
+          <ListItemText  className="listItem">
+          {title}
           </ListItemText>
+
+          <ListItemText style={{paddingRight:'20%'}} className="listItem" >
+           {description}
+          </ListItemText>
+
+          <ListItemText  className="listItem" >
+            Due Date: {dueDate}
+          </ListItemText>
+          </List>
           <ListItemSecondaryAction>
             <IconButton aria-label='Delete' onClick={() => dispatch(removeTodo(id))}>
               <DeleteIcon />
             </IconButton>
-            <IconButton aria-label='Edit' onClick={toggle}>
-              <EditIcon />
-            </IconButton>
+           
           </ListItemSecondaryAction>
+          
+        
         </>
       )}
     </ListItem>
   );
 }
 
-export default Todo;
+export default CompletedTodo;

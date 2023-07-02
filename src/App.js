@@ -1,12 +1,12 @@
 import React from "react";
-import TodoApp from "./TodoApp";
 import {
   createBrowserRouter,
   RouterProvider,
   Outlet,
   Navigate,
 } from "react-router-dom";
-import TodoForm from "./TodoForm";
+import TodoApp from "./components/todoApp/TodoApp";
+import TodoForm from "./components/todoForm/TodoForm";
 
 function App() {
   const router = createBrowserRouter([
