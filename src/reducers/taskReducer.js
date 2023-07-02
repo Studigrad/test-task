@@ -22,23 +22,40 @@ import {
           tasks: [...state.tasks, action.payload],
         };
       case UPDATE_TASK:
+        try{
         const updatedTasks = state.tasks.map(task => {
+          
             if (task.id === action.payload.id) {
               return { ...task, description:action.payload.task,title:action.payload.title,dueDate:action.payload.date};
             }
             return task; 
-          });
-        return {
-          ...state,
-          tasks: updatedTasks
-        };
+          
+        });
+          return {
+            ...state,
+            tasks: updatedTasks
+          };
+          }catch(e){
+            console.log(e)
+            return {
+              ...state
+            }
+          }
         case DELETE_TASK:
-   
+            try{
+
+            
           return {
             ...state,
             tasks: state.tasks.filter((task) => task.id !== action.payload),
             completedTasks: state.completedTasks.filter((task) => task.id !== action.payload),
           };
+        }catch(e){
+          console.log(e)
+          return {
+            ...state
+          };
+        }
 
         case BY_TITLE:
           
